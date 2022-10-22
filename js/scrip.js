@@ -57,7 +57,7 @@ cortarS("Hola Mundo", 4)
 cortarA("hola mundo de perra"," ") 
 */
 /* 4) Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo. */
-
+/* 
 function repetirX(cadena, numero) {
   let texto = cadena;
   if (typeof texto == "string" && typeof numero == "number") {
@@ -68,4 +68,46 @@ function repetirX(cadena, numero) {
     console.log("error tipo de dato incorrecto");
   }
 }
-repetirX("hola gatosss", 3)
+repetirX("hola gatosss", 3) 
+*/
+
+/*
+
+7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
+8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+*/
+
+
+/* 
+ 5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
+
+function invertirC(cadena) {
+  let texto = cadena;
+  if (typeof texto == "string") {
+    texto = texto.split("");
+    texto = texto.reverse();
+    texto = texto.join("")
+    console.log(texto)
+  } else {
+    console.log("error tipo de dato incorrecto");
+  }
+}
+invertirC("hola mundo")
+ */
+
+/*
+6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2. 
+ */
+
+function contar (cadena, busqueda) {
+    let texto = cadena;
+    let espacio = busqueda;
+    if (typeof texto == "string" && typeof espacio == "string") {
+       
+           
+    }else {
+      console.log("error tipo de dato incorrecto");
+    }
+  }
+
+  contar("hola la la la  perra de calle","la")
