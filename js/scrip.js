@@ -68,9 +68,7 @@ const repetirX = (cadena, numero) => {
 const invertirC = (cadena) => {
   let texto = cadena;
   if (typeof texto === "string") {
-    texto = texto.split("");
-    texto = texto.reverse();
-    texto = texto.join("");
+    texto = texto.split("").reverse().join("");
     console.log(texto);
   } else {
     console.log("error tipo de dato incorrecto");
@@ -81,12 +79,63 @@ const invertirC = (cadena) => {
 
 /*
 6) Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2. 
+
 */
+const contar = (palabra, buscar) => {
+  palabra = palabra.split(" ");
+  let cont = 0;
+  for (let i = 0; i <= palabra.length; i++) {
+    if (palabra[i] === buscar) {
+      cont += 1;
+    }
+  }
+  console.log(cont);
+  // console.log(palabra)
+  // console.log(cont)
+};
+// contar("Cuando ofrecemos un un área de un texto puede darse el caso", "un");
+
 /* 7) Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true. */
 const validar = (palabra) => {
-  let oldPalabra = palabra.split("").reverse().join("");
-  console.log(`${oldPalabra}` === palabra);
+  if (typeof palabra === "string" && palabra != "") {
+    let oldPalabra = palabra.split("").reverse().join("");
+    console.log(`${oldPalabra}` === palabra);
+  } else {
+    console.log("error tipo de dato incorrecto");
+  }
 };
-validar("ana");
+// validar("reconocer");
 
 /*  8) Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5. */
+
+const eliminar = (texto,palabra) => {
+  if (typeof palabra === "string" && texto != "" && typeof texto === "string" ) {
+
+    // let expReg = new RegExp(palabra, "ig");
+    // texto = texto.replace(/(xyz)/gm , "")
+    texto = texto.split(palabra).join("")
+    console.log(texto)
+
+
+
+
+
+
+
+
+  } else {
+    console.log("error tipo de dato incorrecto");
+  }
+}
+
+eliminar("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz")
+
+/* let cadena = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem fuga cupiditate dolores saepe, praesentium sit eaque lorem recusandae id sapiente similique, laudantium voluptatum perferendis ea iure ad odio doloremque earum voluptate.";
+
+     let expReg = new RegExp("lorem", "ig");
+     console.log(expReg.test(cadena));
+     console.log(expReg.exec(cadena));
+
+     let expReg2 = /lorem{1,}/ig;
+     console.log(expReg2.test(cadena));
+     console.log(expReg2.exec(cadena)); */
