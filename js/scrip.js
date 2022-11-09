@@ -167,3 +167,4 @@ const factorial = (numero) =>{
   console.log(num)
 }
 factorial(4)
+
