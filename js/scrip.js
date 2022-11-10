@@ -127,44 +127,70 @@ const eliminar = (texto, palabra) => {
 /* 9) Programa una función que obtenga un numero aleatorio entre 501 y 600 */
 
 const aleatorio = () =>
-  console.log(Math.round(Math.random() * (600 - 501) +501));
+  console.log(Math.round(Math.random() * (600 - 501) + 501));
 
 // aleatorio()
 
 /* 10) Programa una función que reciba un número y evalúe si es capicúa o no (que se lee igual en un sentido que en otro), pe. miFuncion(2002) devolverá true  */
 
-const capicúa =(numero) =>{
-  if(!numero) return console.error("no ingresaste un numero")
+const capicúa = (numero) => {
+  if (!numero) return console.error("no ingresaste un numero");
   let myInt = numero;
-  let myFunc = num => Number(num);
-  let intArr = Array.from(String(myInt), myFunc)
-  intArr = intArr.reverse().join("")
-  myInt = myInt.toString()
+  let myFunc = (num) => Number(num);
+  let intArr = Array.from(String(myInt), myFunc);
+  intArr = intArr.reverse().join("");
+  myInt = myInt.toString();
   console.log(myInt === intArr);
-
-  
-}
+};
 // capicúa(2002);
 
-const capicúa2 = (numero) =>{
-  if(!numero) return console.error("no ingresaste un numero");
-  let varia = String(numero)
-  let result = varia.split("").reverse().join("")
-  console.info(varia === result)
-}
-// capicúa2(23432)
-
-
+const capicúa2 = (numero) => {
+  if (!numero) return console.error("no ingresaste un numero");
+  let num = numero;
+  if (typeof num != "string") {
+    let varia = String(numero);
+    let result = varia.split("").reverse().join("");
+    console.info(varia === result);
+  } else {
+    console.error("no ingresaste un numero");
+  }
+};
+// capicúa2(12421)
 
 /* 11) Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120 */
 
-const factorial = (numero) =>{
-  if(!numero) return console.error("no ingresaste un numero");
+const factorial = (numero) => {
+  if (!numero) return console.error("no ingresaste un numero");
   let num = numero;
-  for(let i= 1; i<numero; i++){
-    num *= i
+  for (let i = 1; i < numero; i++) {
+    num *= i;
   }
-  console.log(num)
-}
-factorial(4)
+  console.log(num);
+};
+// factorial(4)
 
+/* 12) Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true */
+
+const esPrimo = (numero = undefined) => {
+  if (typeof numero !== "number")
+    return console.warn("tienes que ingresar un numero");
+  if (Math.sign(numero) === -1)
+    return console.warn("no puedes ingresar un numero negativo");
+
+  let num = numero;
+  let result;
+  let cont = 0;
+  for (let i = 1; i <= num; i++) {
+    result = numero / i;
+    if (result % 1 === 0) {
+      console.info(result);
+      cont++;
+    }
+  }
+  cont === 2 ? console.info("es primo") : console.info("NO es primo");
+};
+esPrimo(67);
+
+/* 13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar */
+
+/* 14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F */
