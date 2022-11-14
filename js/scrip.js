@@ -20,12 +20,11 @@ const text = (palabra) => {
 
 const cortarS = (palabra, numero) => {
   let texto = palabra;
-  if (typeof texto === "string" && typeof numero === "number") {
-    let cortado = texto.substring(numero, 0);
-    console.log(cortado);
-  } else {
-    console.log("error tipo de dato incorrecto");
-  }
+  if (typeof texto !== "string" || typeof numero !== "number")
+    return console.log("error tipo de dato incorrecto");
+
+  let cortado = texto.substring(numero, 0);
+  console.log(cortado);
 };
 // cortarS("Hola Mundo", 4);
 
@@ -34,16 +33,13 @@ const cortarS = (palabra, numero) => {
 */
 
 const cortarA = (palabra, espacio) => {
-  let texto = [];
-  texto = palabra;
-  let ext = espacio;
-  if (typeof ext === "string") {
-    let cortado = texto.split(ext);
-    console.log(cortado);
-  } else {
-    console.log("error tipo de dato incorrecto");
-  }
+  if (typeof palabra !== "string")
+    return console.warn("error tipo de dato incorrecto");
+  if (espacio === undefined) return console.warn("no ingresaste el separador");
+
+  console.log(palabra.split(espacio));
 };
+// cortarA("hola que tal", " ");
 
 // cortarA("hola mundo de perra"," ")
 
@@ -66,13 +62,9 @@ const repetirX = (cadena, numero) => {
 5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".*/
 
 const invertirC = (cadena) => {
-  let texto = cadena;
-  if (typeof texto === "string") {
-    texto = texto.split("").reverse().join("");
-    console.log(texto);
-  } else {
-    console.warn("error tipo de dato incorrecto");
-  }
+  if (typeof cadena !== "string") 
+  return  console.warn("error tipo de dato incorrecto");
+  console.log(cadena.split("").reverse().join(""));
 };
 
 // invertirC("hola mundo")
@@ -82,7 +74,9 @@ const invertirC = (cadena) => {
 
 */
 const contar = (palabra, buscar) => {
-  if (typeof palabra === "string" && buscar != "") {
+  if (typeof palabra !== "string" && buscar === "") 
+  return  console.log("error tipo de dato incorrecto");
+
     palabra = palabra.split(" ");
     let cont = 0;
     for (let i = 0; i <= palabra.length; i++) {
@@ -91,9 +85,8 @@ const contar = (palabra, buscar) => {
       }
     }
     console.log(`la cadena tiene la palabra "${buscar}" ${cont} veces`);
-  } else {
-    console.log("error tipo de dato incorrecto");
-  }
+  
+  
 };
 // contar("Cuando ofrecemos un un área de un texto puede darse el caso", "un");
 
@@ -114,8 +107,8 @@ const validar = (palabra) => {
 const eliminar = (texto, palabra) => {
   if (typeof palabra === "string" && texto != "" && typeof texto === "string") {
     // let expReg = new RegExp(palabra, "ig");
-    // texto = texto.replace(/(xyz)/gm , "")
-    texto = texto.split(palabra).join("");
+    texto = texto.replace(new RegExp(palabra,"ig"), "")
+    // texto = texto.split(palabra).join("");
     console.log(texto);
   } else {
     console.log("error tipo de dato incorrecto");
@@ -146,8 +139,8 @@ const capicúa = (numero) => {
 
 const capicúa2 = (numero) => {
   if (!numero) return console.error("no ingresaste un numero");
-  let num = numero;
-  if (typeof num != "string") {
+  
+  if (typeof numero != "string") {
     let varia = String(numero);
     let result = varia.split("").reverse().join("");
     console.info(varia === result);
@@ -189,8 +182,77 @@ const esPrimo = (numero = undefined) => {
   }
   cont === 2 ? console.info("es primo") : console.info("NO es primo");
 };
-esPrimo(67);
+// esPrimo(67);
 
 /* 13) Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar */
 
+const esPar = (numero) =>
+  numero % 2 === 0 ? console.info("es par") : console.info("es inpar");
+
+// esPar(5)
+
+/* const esPar = (numero) => (numero % 2 === 0);
+
+const num = prompt("ingrese un numero")
+
+console.log(esPar(num)?`es par`:`es inpar`) */
 /* 14) Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F */
+const convertir = (numero = undefined, letra = "") => {
+  if (typeof numero !== "number")
+    return console.warn("tienes que ingresar un numero");
+  if (!letra)
+    return console.warn(
+      "tienes que ingresar un caracter para convertit (C o F)"
+    );
+
+  switch (letra.toUpperCase()) {
+    case "C":
+      console.info(`${(numero = numero * (9 / 5) + 32)}°F`);
+      break;
+    case "F":
+      console.info(`${(numero = (numero - 32) * (5 / 9))}°C`);
+      break;
+    default:
+      console.warn(
+        "tienes que ingresar un caracter VALIDO para convertit (C o F)"
+      );
+  }
+};
+// convertir(212,"f")
+
+/* 15) Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10 */
+
+/* 16) Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800 */
+
+const descuento = (precio = undefined, descuento = undefined) => {
+  if (typeof precio !== "number")
+    return console.warn("tienes que ingresar un precio");
+  if (typeof descuento !== "number")
+    return console.warn("tienes que ingresar un descuento");
+  if (Math.sign(descuento) === -1 || Math.sign(precio) === -1)
+    return console.error("el numero no puede ser negativo");
+  if (descuento > 100)
+    return console.error("el descuento no puede superar el 100% ");
+
+  return console.info(
+    `el producto ${precio} con descuento queda en ${
+      precio - (precio / 100) * descuento
+    }`
+  );
+};
+// descuento(2000, 10);
+
+/* 17) Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020) */
+
+const fechaAnio = (fecha) => {
+  let patron = /^(0[1-9]|[1-2]\d|3[01])(\/)(0[1-9]|1[012])\2(\d{4})$/;
+
+  if (patron.test(fecha) !== true)
+    return console.error("fecha incorrecta dd/mm/yyyy");
+
+  fecha = fecha.split("/");
+
+  console.info(`Desde el año ${fecha[2]} han pasado ${2022 - fecha[2]} años`);
+};
+
+// fechaAnio("31/02/2004")
