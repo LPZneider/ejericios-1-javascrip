@@ -257,13 +257,62 @@ const fechaAnio = (fecha) => {
 
 /* 18) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5 */
 const contarVocalesConsonantes = (cadena = "") => {
-  if(cadena === "") return console.warn("no ingresaste una  cadena")
+  if (cadena === "") return console.warn("no ingresaste una cadena");
 
-  if(typeof cadena !== 'string') return console.error(`el valor ${cadena}, NO es un String`)
+  if (typeof cadena !== "string")
+    return console.error(`el valor ${cadena}, NO es un String`);
+  let vocales = 0;
+  let consonantes = 0;
+  cadena = cadena.toLocaleLowerCase().split("");
+  for (let i = 0; i < cadena.length; i++) {
+    if (/[a,e,i,o,u]/.test(cadena[i])) {
+      vocales++;
+    }
+    if (/[b,c,d,f,g,h,j,k,l,m,n,p,q,r,s,t,v,x,y,z]/.test(cadena[i])) {
+      consonantes++;
+    }
+  }
+  cadena = cadena.join("");
+  console.info(
+    `la cadena de texto "${cadena}" tiene Vocales: ${vocales}, Consonantes: ${consonantes}`
+  );
+};
+contarVocalesConsonantes("hola mundo hermoso");
 
-
-}
-contarVocalesConsonantes();
 /* 19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero */
+const validarNombre = (cadena = "") => {
+  if (cadena === "") return console.warn("no ingresaste una cadena");
+
+  if (typeof cadena !== "string")
+    return console.error(`el valor ${cadena}, NO es un String`);
+
+  cadena = cadena.split(" ")
+  let a = 0;
+  for(let i = 0; i< cadena.length; i++){
+    if(/^[A-Z][a-z]+$/.test(cadena[i])){
+      a++
+    }
+  }  
+  if(cadena.length === a){
+    console.info("nombre valido")
+  }else{
+    console.warn("nombre INVALIDO")
+  }
+};
+validarNombre("Jonathan Mircha")
+
+
 
 /* 20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero */
+const validarCorreo = (correo = "") =>{
+  if (correo === "") return console.warn("no ingresaste una cadena");
+
+  let patron = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+
+  if(patron.test(correo)){
+    console.info("correo valido")
+  }else {
+    console.error(`èl correo "${correo}" es INVALIDO`)
+  }
+}
+validarCorreo("jonmircha@gmail.com")
