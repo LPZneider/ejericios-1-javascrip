@@ -62,8 +62,8 @@ const repetirX = (cadena, numero) => {
 5) Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".*/
 
 const invertirC = (cadena) => {
-  if (typeof cadena !== "string") 
-  return  console.warn("error tipo de dato incorrecto");
+  if (typeof cadena !== "string")
+    return console.warn("error tipo de dato incorrecto");
   console.log(cadena.split("").reverse().join(""));
 };
 
@@ -74,19 +74,17 @@ const invertirC = (cadena) => {
 
 */
 const contar = (palabra, buscar) => {
-  if (typeof palabra !== "string" && buscar === "") 
-  return  console.log("error tipo de dato incorrecto");
+  if (typeof palabra !== "string" && buscar === "")
+    return console.log("error tipo de dato incorrecto");
 
-    palabra = palabra.split(" ");
-    let cont = 0;
-    for (let i = 0; i <= palabra.length; i++) {
-      if (palabra[i] === buscar) {
-        cont += 1;
-      }
+  palabra = palabra.split(" ");
+  let cont = 0;
+  for (let i = 0; i <= palabra.length; i++) {
+    if (palabra[i] === buscar) {
+      cont += 1;
     }
-    console.log(`la cadena tiene la palabra "${buscar}" ${cont} veces`);
-  
-  
+  }
+  console.log(`la cadena tiene la palabra "${buscar}" ${cont} veces`);
 };
 // contar("Cuando ofrecemos un un área de un texto puede darse el caso", "un");
 
@@ -107,7 +105,7 @@ const validar = (palabra) => {
 const eliminar = (texto, palabra) => {
   if (typeof palabra === "string" && texto != "" && typeof texto === "string") {
     // let expReg = new RegExp(palabra, "ig");
-    texto = texto.replace(new RegExp(palabra,"ig"), "")
+    texto = texto.replace(new RegExp(palabra, "ig"), "");
     // texto = texto.split(palabra).join("");
     console.log(texto);
   } else {
@@ -139,7 +137,7 @@ const capicúa = (numero) => {
 
 const capicúa2 = (numero) => {
   if (!numero) return console.error("no ingresaste un numero");
-  
+
   if (typeof numero != "string") {
     let varia = String(numero);
     let result = varia.split("").reverse().join("");
@@ -257,3 +255,8 @@ const fechaAnio = (fecha) => {
 
 // fechaAnio("31/02/2004")
 
+/* 18) Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5 */
+
+/* 19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero */
+
+/* 20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero */
