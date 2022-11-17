@@ -277,7 +277,7 @@ const contarVocalesConsonantes = (cadena = "") => {
     `la cadena de texto "${cadena}" tiene Vocales: ${vocales}, Consonantes: ${consonantes}`
   );
 };
-contarVocalesConsonantes("hola mundo hermoso");
+// contarVocalesConsonantes("hola mundo hermoso");
 
 /* 19) Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero */
 const validarNombre = (cadena = "") => {
@@ -286,33 +286,106 @@ const validarNombre = (cadena = "") => {
   if (typeof cadena !== "string")
     return console.error(`el valor ${cadena}, NO es un String`);
 
-  cadena = cadena.split(" ")
+  cadena = cadena.split(" ");
   let a = 0;
-  for(let i = 0; i< cadena.length; i++){
-    if(/^[A-Z][a-z]+$/.test(cadena[i])){
-      a++
+  for (let i = 0; i < cadena.length; i++) {
+    if (/^[A-Z][a-z]+$/.test(cadena[i])) {
+      a++;
     }
-  }  
-  if(cadena.length === a){
-    console.info("nombre valido")
-  }else{
-    console.warn("nombre INVALIDO")
+  }
+  if (cadena.length === a) {
+    console.info("nombre valido");
+  } else {
+    console.warn("nombre INVALIDO");
   }
 };
-validarNombre("Jonathan Mircha")
-
-
+// validarNombre("Jonathan Mircha")
 
 /* 20) Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero */
-const validarCorreo = (correo = "") =>{
+const validarCorreo = (correo = "") => {
   if (correo === "") return console.warn("no ingresaste una cadena");
 
-  let patron = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+  let patron =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-  if(patron.test(correo)){
-    console.info("correo valido")
-  }else {
-    console.error(`èl correo "${correo}" es INVALIDO`)
+  if (patron.test(correo)) {
+    console.info("correo valido");
+  } else {
+    console.error(`èl correo "${correo}" es INVALIDO`);
   }
+};
+// validarCorreo("jonmircha@gmail.com");
+
+/* 21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25] */
+
+const elevar2 = (arreglo = undefined) =>{
+  if (arreglo === undefined) return console.warn("no ingresaste el arreglo");
+
+  if (!(arreglo instanceof Array))
+    return console.error(
+      `el valor ${arreglo} ingresado, NO es un arreglo`
+    );
+
+  let elevados = [];
+  for (let numero of arreglo) {
+    if(Math.sign(numero) === -1) return console.error("el arreglo no puede contener numeros negativos")
+ 
+    if(typeof numero !== 'number') return console.error(`el valor "${numero}" no es un numero`)
+    
+    elevados.push(numero * numero)
+  }
+  return console.info(elevados)
+
 }
-validarCorreo("jonmircha@gmail.com")
+elevar2([1,4,5])
+
+
+/* 22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60] */
+const encontarMinMax = (arreglo = undefined) =>{
+if (arreglo === undefined) return console.warn("no ingresaste el arreglo");
+
+if (!(arreglo instanceof Array))
+  return console.error(
+    `el valor ${arreglo} ingresado, NO es un arreglo`
+  );
+
+let min = 1, max = 0, result = [];
+
+for (let numero of arreglo) {
+  if(typeof numero !== 'number') return console.error(`el valor "${numero}" no es un numero`)
+  if(numero >= max) max = numero;
+  if(numero <= min) min = numero;
+}
+
+result.push(min,max)
+
+return console.info(result);
+
+}
+encontarMinMax([1, 4, 5, 99, -60])
+
+
+/* 23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]} */
+const encontrarParesInpar = (arreglo = undefined) => {
+  if (arreglo === undefined) return console.warn("no ingresaste el arreglo");
+
+if (!(arreglo instanceof Array))
+  return console.error(
+    `el valor ${arreglo} ingresado, NO es un arreglo`
+  );
+
+let inpar = [], par = [];
+
+for (let numero of arreglo) {
+  if(typeof numero !== 'number') return console.error(`el valor "${numero}" no es un numero`)
+  if(numero %2 === 0) par.push(numero)
+  if(!(numero % 2 === 0)) inpar.push(numero)
+}
+return console.info({
+  arreglo,
+  par,
+  inpar
+})
+
+}
+encontrarParesInpar([1,2,3,4,5,6,7,8,9,0])
