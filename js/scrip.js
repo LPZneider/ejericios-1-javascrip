@@ -318,74 +318,125 @@ const validarCorreo = (correo = "") => {
 
 /* 21) Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25] */
 
-const elevar2 = (arreglo = undefined) =>{
+const elevar2 = (arreglo = undefined) => {
   if (arreglo === undefined) return console.warn("no ingresaste el arreglo");
 
   if (!(arreglo instanceof Array))
-    return console.error(
-      `el valor ${arreglo} ingresado, NO es un arreglo`
-    );
+    return console.error(`el valor ${arreglo} ingresado, NO es un arreglo`);
 
-  let elevados = [];
+  /*  let elevados = [];
   for (let numero of arreglo) {
-    if(Math.sign(numero) === -1) return console.error("el arreglo no puede contener numeros negativos")
- 
-    if(typeof numero !== 'number') return console.error(`el valor "${numero}" no es un numero`)
-    
-    elevados.push(numero * numero)
-  }
-  return console.info(elevados)
+    if (Math.sign(numero) === -1)
+      return console.error("el arreglo no puede contener numeros negativos");
 
-}
-elevar2([1,4,5])
+    if (typeof numero !== "number")
+      return console.error(`el valor "${numero}" no es un numero`);
 
+    elevados.push(numero * numero);
+  } */
+  const elevados = arreglo.map((num) => num * num);
+  return console.info(elevados);
+};
+elevar2([1, 4, 5]);
 
 /* 22) Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60] */
-const encontarMinMax = (arreglo = undefined) =>{
-if (arreglo === undefined) return console.warn("no ingresaste el arreglo");
+const encontarMinMax = (arreglo = undefined) => {
+  if (arreglo === undefined) return console.warn("no ingresaste el arreglo");
 
-if (!(arreglo instanceof Array))
-  return console.error(
-    `el valor ${arreglo} ingresado, NO es un arreglo`
-  );
+  if (!(arreglo instanceof Array))
+    return console.error(`el valor ${arreglo} ingresado, NO es un arreglo`);
+  /*    let min = 1,
+    max = 0,
+    result = [];
+  if (numero >= max) max = numero;
+  if (numero <= min) min = numero; */
+  for (let numero of arreglo) {
+    if (typeof numero !== "number")
+      return console.error(`el valor "${numero}" no es un numero`);
+  }
 
-let min = 1, max = 0, result = [];
-
-for (let numero of arreglo) {
-  if(typeof numero !== 'number') return console.error(`el valor "${numero}" no es un numero`)
-  if(numero >= max) max = numero;
-  if(numero <= min) min = numero;
-}
-
-result.push(min,max)
-
-return console.info(result);
-
-}
-encontarMinMax([1, 4, 5, 99, -60])
-
+  const result = [];
+  result.push(Math.max(...arreglo));
+  result.push(Math.min(...arreglo));
+  return console.info(result);
+};
+encontarMinMax([1, 4, 5, 99, -60]);
 
 /* 23) Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]} */
 const encontrarParesInpar = (arreglo = undefined) => {
   if (arreglo === undefined) return console.warn("no ingresaste el arreglo");
 
-if (!(arreglo instanceof Array))
-  return console.error(
-    `el valor ${arreglo} ingresado, NO es un arreglo`
+  if (!(arreglo instanceof Array))
+    return console.error(`el valor ${arreglo} ingresado, NO es un arreglo`);
+  for (let numero of arreglo) {
+    if (typeof numero !== "number")
+      return console.error(`el valor "${numero}" no es un numero`);
+  }
+  /*     if (numero % 2 === 0) par.push(numero);
+    if (!(numero % 2 === 0)) inpar.push(numero);
+  }
+  return console.info({
+    arreglo,
+    par,
+    inpar, */
+  const pares = arreglo.filter((arr) => arr % 2 === 0),
+    impar = arreglo.filter((arr) => arr % 2 === 1);
+
+  return console.info({
+    pares,
+    impar,
+  });
+};
+encontrarParesInpar([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]);
+/* 24) Programa una función que dado un arreglo de números devuelva un objeto con dos arreglos, el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendiente, pe. miFuncion([7, 5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }*/
+const ordenar = (arr = undefined) => {
+  if (arr === undefined) return console.warn("no ingresaste el arreglo");
+
+  if (!(arr instanceof Array))
+    return console.error(`el valor ${arreglo} ingresado, NO es un arreglo`);
+
+  for (let numero of arr) {
+    if (typeof numero !== "number")
+      return console.error(`el valor "${numero}" no es un numero`);
+    const desc = arr.sort((a, b) => a - b);
+    // const asc = arr.map(num => num).sort((a,b) => a < b ? 1: -1);
+    const asc = [...arr].sort((a, b) => (a < b ? 1 : -1));
+    return console.info({
+      desc,
+      asc,
+    });
+  }
+};
+// ordenar([7, 5, 7, 8, 6]);
+
+/* 25) Programa una función que dado un arreglo de elementos, elimine los duplicados, pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true]  */
+const eliminarRepetidos = (arr = undefined) => {
+  if (arr === undefined) return console.warn("no ingresaste el arreglo");
+
+  if (!(arr instanceof Array))
+    return console.error(`el valor ${arreglo} ingresado, NO es un arreglo`);
+
+  const eliminar = arr.reduce(
+    (sinRepetir, arreglo) => Array.from(new Set([...sinRepetir, arreglo])),
+    []
   );
+  console.info(eliminar);
+};
+// eliminarRepetidos(["x", 10, "x", 2, "10", 10, true, true]);
 
-let inpar = [], par = [];
+/* 26) Programa una función que dado un arreglo de números obtenga el promedio, pe. promedio([9,8,7,6,5,4,3,2,1,0]) devolverá 4.5 */
+const promedio = (arr = undefined) => {
+  if (arr === undefined) return console.warn("no ingresaste el arreglo");
 
-for (let numero of arreglo) {
-  if(typeof numero !== 'number') return console.error(`el valor "${numero}" no es un numero`)
-  if(numero %2 === 0) par.push(numero)
-  if(!(numero % 2 === 0)) inpar.push(numero)
-}
-return console.info({
-  arreglo,
-  par,
-  inpar
-})
+  if (!(arr instanceof Array))
+    return console.error(`el valor ${arreglo} ingresado, NO es un arreglo`);
 
-}
-encontrarParesInpar([1,2,3,4,5,6,7,8,9,0])
+  for (let numero of arr) {
+    if (typeof numero !== "number")
+      return console.error(`el valor "${numero}" no es un numero`);
+  }
+  const promed = arr.reduce((total, arreglo) => total + arreglo, 0);
+
+  console.info(`el promedio de [${arr}] es ${promed / arr.length}`);
+};
+// promedio([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]);
